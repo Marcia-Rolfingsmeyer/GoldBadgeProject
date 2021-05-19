@@ -49,44 +49,64 @@ namespace Claim_Repository
 
     public class ClaimRepository
     {
-        private readonly List<Claims> _claimsDirectory = new List<Claims>();
 
-        public List<Claims> getsAllClaims()
+        Queue<Claims> _claimsDirectory = new Queue<Claims>();
+
+        public Queue<Claims> seeAllClaims()
         {
             return _claimsDirectory;
         }
 
-        //select next claim
-
-        public List<Claims> getNextClaims(string nextItem)
+        public Queue<Claims> seeNextClaim()
         {
-            while (_claimsDirectory >= 1) 
+            Queue<Claims>.Enumerator nextClaim = _claimsDirectory.GetEnumerator();
+            while (nextClaim.MoveNext())
             {
-                return nextItem;
+                return(nextClaim);
             }
+            return null;
         }
 
 
-        public bool UpdateNextClaims(int originalClaims, Claims newClaimItem)
-        {
-            Claims oldClaim = GetClaimByClaimID(originalClaims);
 
-            if (oldClaim != null)
-            {
-                oldClaim.ClaimID = newClaimItem.ClaimID;
-                oldClaim.TypeOfClaim = newClaimItem.TypeOfClaim;
-                oldClaim.Description = newClaimItem.Description;
-                oldClaim.ClaimAmount = newClaimItem.ClaimAmount;
-                oldClaim.DateOfIncident = newClaimItem.DateOfIncident;
-                oldClaim.DateOfClaim = newClaimItem.DateOfClaim;
-                oldClaim.IsValid = newClaimItem.IsValid;
+    //    private readonly List<Claims> _claimsDirectory = new List<Claims>();
 
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-    }
+    //    public List<Claims> getsAllClaims()
+    //    {
+    //        return _claimsDirectory;
+    //    }
+
+    //    //select next claim
+
+    //    public List<Claims> getNextClaims(string nextItem)
+    //    {
+    //        while (_claimsDirectory >= 1) 
+    //        {
+    //            return nextItem;
+    //        }
+    //    }
+
+
+    //    public bool UpdateNextClaims(int originalClaims, Claims newClaimItem)
+    //    {
+    //        Claims oldClaim = GetClaimByClaimID(originalClaims);
+
+    //        if (oldClaim != null)
+    //        {
+    //            oldClaim.ClaimID = newClaimItem.ClaimID;
+    //            oldClaim.TypeOfClaim = newClaimItem.TypeOfClaim;
+    //            oldClaim.Description = newClaimItem.Description;
+    //            oldClaim.ClaimAmount = newClaimItem.ClaimAmount;
+    //            oldClaim.DateOfIncident = newClaimItem.DateOfIncident;
+    //            oldClaim.DateOfClaim = newClaimItem.DateOfClaim;
+    //            oldClaim.IsValid = newClaimItem.IsValid;
+
+    //            return true;
+    //        }
+    //        else
+    //        {
+    //            return false;
+    //        }
+    //    }
+    //}
 }

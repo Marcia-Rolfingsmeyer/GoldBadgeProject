@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cafe_Project_Repo\Cafe_Project_Repo.csproj">
-      <Project>{BE62CCE1-F6B8-4455-8381-E7534A8CC8CC}</Project>
+      <Project>{be62cce1-f6b8-4455-8381-e7534a8cc8cc}</Project>
       <Name>Cafe_Project_Repo</Name>
     </ProjectReference>
   </ItemGroup>

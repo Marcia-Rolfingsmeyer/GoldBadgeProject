@@ -27,7 +27,7 @@ namespace Cafe_Items_Test
             CafeItemsRepo repository = new CafeItemsRepo();
             repository.AddToCafeItemDirectory(items);
 
-            List<CafeItems> directory = repository.AddCafeItems();
+            List<CafeItems> directory = repository.ShowAllCafeItems();
 
             bool directoryHasCafeItems = directory.Contains(items);
 

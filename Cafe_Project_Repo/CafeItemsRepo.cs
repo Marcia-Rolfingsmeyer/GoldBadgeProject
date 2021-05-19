@@ -8,17 +8,17 @@ namespace Cafe_Project_Repo
 {
     public class CafeItemsRepo
     {
-        private List<CafeItems> _cafeItemsDirectory = new List<CafeItems>();
+        private readonly List<CafeItems> _cafeItemsDirectory = new List<CafeItems>();
 
         public bool AddToCafeItemDirectory(CafeItems newItems)
         {
             int startingCount = _cafeItemsDirectory.Count;
             _cafeItemsDirectory.Add(newItems);
-            bool wasAdded = (_cafeItemsDirectory.Count > startingCount) ? true : false;
+            bool wasAdded = _cafeItemsDirectory.Count > startingCount;
             return wasAdded;
         }
 
-        public List<CafeItems> showAllCafeItems()
+        public List<CafeItems> ShowAllCafeItems()
         {
             return _cafeItemsDirectory;
         }
@@ -85,7 +85,6 @@ namespace Cafe_Project_Repo
         public bool UpdateExistingCafeItems(string originalMealName, CafeItems newItemsValues)
         {
             CafeItems oldItems = AddCafeItemsMealName(originalMealName);
-
             if (oldItems != null)
             {
                 oldItems.MealName = newItemsValues.MealName;

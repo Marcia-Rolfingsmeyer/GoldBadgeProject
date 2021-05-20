@@ -50,11 +50,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClaimTest.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Claim_Repository\Claim_Repository.csproj">
+      <Project>{DB342331-C942-4AFF-AE4C-DBA4B66F722F}</Project>
+      <Name>Claim_Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

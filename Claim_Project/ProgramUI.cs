@@ -19,6 +19,8 @@ namespace Claim_Project
 
         private void Menu()
         {
+            Console.Clear();
+
             bool keepRunning = true;
             while (keepRunning)
             {
@@ -56,35 +58,58 @@ namespace Claim_Project
 
         private void ViewAllClaims()
         {
-            Console.WriteLine(_repo.GetAllClaims());
+            Queue<Claims> allClaims = _repo.GetAllClaims();
+            foreach (Claims claim in allClaims)
+            {
+                Console.WriteLine($" Claim ID: {claim.ClaimID}  \n" +
+                    $"Type of Claim: {claim.TypeOfClaim} \n" +
+                    $"Description: {claim.Description} \n" +
+                    $"Amount: {claim.ClaimAmount} \n" +
+                    $"Incident Date: {claim.DateOfIncident} \n" +
+                    $"Claim Date: {claim.DateOfClaim}\n" +
+                    $"Is Valid: {claim.IsValid}");
+            }
         }
 
         private void ViewNextClaim()
         {
-            bool nextClaimAvailable = true;
-            while (nextClaimAvailable)
+            Queue<Claims> allClaims = _repo.GetAllClaims();
+
+            Claims claim = allClaims.Peek();
+            Console.WriteLine($" Claim ID: {claim.ClaimID}  \n" +
+                     $"Type of Claim: {claim.TypeOfClaim} \n" +
+                     $"Description: {claim.Description} \n" +
+                     $"Amount: {claim.ClaimAmount} \n" +
+                     $"Incident Date: {claim.DateOfIncident} \n" +
+                     $"Claim Date: {claim.DateOfClaim}\n" +
+                     $"Is Valid: {claim.IsValid}");
+
+            bool keepRunning = true;
+            while (keepRunning)
             {
-                Console.Clear();
-                _repo.GetNextClaim();
+
                 Console.WriteLine
-                    ("Select a menu option: \n" +
-                    "1. Delete completed claim and go to next claim. \n" +
-                    "2. Claim not completed, exit to main menu.\n" +
-                    "Please select option 1 or 2.");
+                ("Select a menu option: \n" +
+                "1. Remove completed claim. \n" +
+                "2. Claim not completed, exit to main menu.\n" +
+                "Please select option 1 or 2.");
+                
                 string input = Console.ReadLine();
+
                 switch (input.ToLower())
                 {
                     case "1":
                     case "one":
                         _repo.DeleteClaim();
+                        Console.WriteLine("The claim was completed and removed. Press Enter to go back to the Main Menu");
+                        Console.ReadKey();
+                        Menu();
                         break;
                     case "2":
                     case "two":
-                        nextClaimAvailable = false;
+                        keepRunning = false;
                         break;
                 }
-                Console.ReadKey();
-                Console.Clear();
             }
         }
 
@@ -123,18 +148,28 @@ namespace Claim_Project
             newClaim.DateOfIncident = incidentDT;
 
             Console.WriteLine("Enter the date that the claim was made - please use the following formate:\n" +
-    " year/month/day\n" +
-    " (example: 2021/01/31)");
+            " year/month/day\n" +
+            " (example: 2021/01/31)");
             string claimDTAsString = Console.ReadLine();
             var claimDT = DateTime.Parse(claimDTAsString);
             newClaim.DateOfIncident = claimDT;
+
+            bool wasAdded = _repo.AddClaim(newClaim);
+            if (wasAdded)
+            {
+                Console.WriteLine("The new claim was added correctly!");
+            }
+            else
+            {
+                Console.WriteLine("could not add claim.");
+            }
         }
 
         private void SeedClaims()
         {
-            Claims exOne = new Claims(1, ClaimType.Car, "Car accident on 465", 400.00m, new DateTime(2021/04/25), new DateTime(2021/04/25));
-            Claims exTwo = new Claims(2, ClaimType.Home, "House fire in kitchen.", 4000.00m, new DateTime (2021, 04, 11), new DateTime(2021, 04, 12));
-            Claims exThree = new Claims(3, ClaimType.Theft, "Stolen Pancakes", 4.00m, new DateTime(2021/03/27), new DateTime(2021/05/01));
+            Claims exOne = new Claims(1, ClaimType.Car, "Car accident on 465", 400.00m, new DateTime(2021 / 04 / 25), new DateTime(2021 / 04 / 25));
+            Claims exTwo = new Claims(2, ClaimType.Home, "House fire in kitchen.", 4000.00m, new DateTime(2021, 04, 11), new DateTime(2021, 04, 12));
+            Claims exThree = new Claims(3, ClaimType.Theft, "Stolen Pancakes", 4.00m, new DateTime(2021 / 03 / 27), new DateTime(2021 / 05 / 01));
 
             _repo.AddClaim(exOne);
             _repo.AddClaim(exTwo);

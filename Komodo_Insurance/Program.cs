@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClaimProject
+namespace Komodo_Insurance
 {
-    //Create a Program file that allows a claims manager to manage items in a list of claims.
-
     class Program
     {
+        static void Main(string[] args)
+        {
+        }
     }
 }

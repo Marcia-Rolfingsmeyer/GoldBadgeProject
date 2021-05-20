@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Claim_Project
 {
-    //class Program
-    //{
-    //    static void Main(string[] args)
-    //    {
-    //    }
-    //}
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            ProgramUI ui = new ProgramUI();
+            ui.Run();
+        }
+    }
 }

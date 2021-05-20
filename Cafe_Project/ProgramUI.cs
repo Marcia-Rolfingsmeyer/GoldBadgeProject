@@ -28,10 +28,9 @@ namespace Cafe_Project
                     "2. View all menu items. \n" +
                     "3. Update menu item. \n" +
                     "4. Delect menu item. \n" +
-                    "5. Exit");
-
+                    "5. Exit\n" +
+                    "Please Enter a Number 1 - 5: \n");
                 string input = Console.ReadLine();
-
                 switch (input.ToLower())
                 {
                     case "1":
@@ -52,6 +51,7 @@ namespace Cafe_Project
                         break;
                     case "5":
                     case "five":
+                        keepRunning = false;
                         break;
                 }
                 Console.WriteLine("Please press any key to continue");
@@ -67,7 +67,7 @@ namespace Cafe_Project
 
             Console.WriteLine("What is your meal name?");
             newCafeItems.MealName = Console.ReadLine();
-            
+
             Console.WriteLine("What is included with this meal?");
             newCafeItems.MealDescription = Console.ReadLine();
 
@@ -79,13 +79,13 @@ namespace Cafe_Project
             decimal MealCostAsDecimal = Convert.ToDecimal(MealCostAsString);
             newCafeItems.MealCost = MealCostAsDecimal;
 
-            Console.WriteLine("What is the Meal Number for this meal?\n");
+            Console.WriteLine("What is the Meal Number for this meal?");
             string mealNumberAsString = Console.ReadLine();
             int mealNumberAsInt = Convert.ToInt32(mealNumberAsString);
             newCafeItems.MealCost = mealNumberAsInt;
 
             bool wasAddedCorrectly = _repo.AddToCafeItemDirectory(newCafeItems);
-            if(wasAddedCorrectly)
+            if (wasAddedCorrectly)
             {
                 Console.WriteLine("The new Meal was added correctly!");
             }
@@ -102,7 +102,7 @@ namespace Cafe_Project
             foreach (CafeItems items in allCafeItems)
             {
                 Console.WriteLine
-                    ($"Meal Name: {items.MealName} \n" + $"Meal Description: {items.MealDescription} \n" + $"Meal Ingredients: {items.MealIngredients}\n" + $"Meal Cost: {items.MealCost}\n" + $"Meal Number: {items.MealNumber}");
+                    ($"Meal Name: {items.MealName}   \n" + $"Meal Description: {items.MealDescription}     \n" + $"Meal Ingredients: {items.MealIngredients}  \n" + $"Meal Cost: {items.MealCost}  \n" + $"Meal Number: {items.MealNumber}  \n");
             }
         }
 
@@ -170,7 +170,6 @@ namespace Cafe_Project
             CafeItems theGuerin = new CafeItems("Burger with Cheese", "1/4 lb Burger on sourdough bread grilled with cheddar, munster, and provolone cheese with thousand island dressing all the trimings, a side of seasoned fries and a regular drink", "Bun, Lettuce, Tomatoe, Pickle, Cheddar Cheese", 11.99m, 2);
             CafeItems theChickenSue = new CafeItems("Chicken Sandwich", "A Chicken Patty on a Kaiser Roll, a side of seasoned fries and a regular drink", "1 chicken patty, 1 Bun, provolone cheese, Lettuce, mayo", 10.99m, 3);
             CafeItems theMarcia = new CafeItems("Spicy Burger", "Single Patty on a Pretzel Bun with sauce with a side of seasoned fries and a regular drink", "Bun, Lettuce, Tomatoe, Pickle, Cheddar Cheese", 9.99m, 4);
-
             _repo.AddToCafeItemDirectory(theTitus);
             _repo.AddToCafeItemDirectory(theGuerin);
             _repo.AddToCafeItemDirectory(theChickenSue);

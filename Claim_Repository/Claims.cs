@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Claim_Repository
 {
-    public enum ClaimType { Car, Home, Theft }
+    public enum ClaimType { Car = 1, Home, Theft }
 
     public class Claims
     {
         public int ClaimID { get; set; }
-        public ClaimType TypeOfClaim {get; set;}
+        public ClaimType TypeOfClaim { get; set; }
         public string Description { get; set; }
         public decimal ClaimAmount { get; set; }
         public DateTime DateOfIncident { get; set; }

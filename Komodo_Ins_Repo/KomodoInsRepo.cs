@@ -8,11 +8,9 @@ namespace Komodo_Ins_Repo
 {
     public class KomodoInsRepo
     {
-        readonly KomodoInsurance newItem = new KomodoInsurance();
-
         readonly Dictionary<int, List<string>> _badgeDictionary = new Dictionary<int, List<string>>();
 
-        public List<string> doors = new List<string>() { "A1", "A2", "A3", "A4", "A5", "A6", "A7", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4" };
+        public List<string> doorList = new List<string>() { "A1", "A2", "A3", "A4", "A5", "A6", "A7", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4" };
 
         public bool AddNewPermissions(int newBadgeID, List<string> newDoors)
         {
@@ -24,7 +22,7 @@ namespace Komodo_Ins_Repo
 
         //can also try:  
         //public void AddNewPermissions(Key, Val) //like Badge badge
-        //_badgeDictionary.Add(val.BadgeID, val.Doors);
+        //_badgeDictionary.Add(valBadgeID, valDoors);
 
 
         public void UpdateExistingBadge(int badgeID, string newDoor)

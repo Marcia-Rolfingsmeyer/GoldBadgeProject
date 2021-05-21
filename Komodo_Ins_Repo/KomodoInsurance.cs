@@ -9,7 +9,7 @@ namespace Komodo_Ins_Repo
     public class KomodoInsurance
     {
         public int BadgeID { get; set; }
-        public List<string> Doors { get; }
+        public List<string> Doors { get; set; }
         
         public KomodoInsurance() { }
 

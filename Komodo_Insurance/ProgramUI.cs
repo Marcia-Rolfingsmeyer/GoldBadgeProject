@@ -38,11 +38,11 @@ namespace Komodo_Insurance
                         break;
                     case "2":
                     case "two":
-                        //EditBadgePermssions();
+                        EditBadgePermissions();
                         break;
                     case "3":
                     case "three":
-                        //ListAllBadgesPermissions();
+                        ListAllBadgesPermissions();
                         break;
                     case "4":
                     case "four":
@@ -85,9 +85,14 @@ namespace Komodo_Insurance
                     Console.WriteLine("Type your selection.");
                     doors.Add(Console.ReadLine());
                 }
-                else
+                else if (inputKey == 'n')
                 {
                     runUntilDone = false;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter y or n");
+                    Console.ReadKey();
                 }
             }
             bool wasAdded = _repo.AddNewPermissions(newBadgeID, doors);
@@ -100,49 +105,58 @@ namespace Komodo_Insurance
         public void EditBadgePermissions()
         {
             Console.Clear();
-            Console.WriteLine("What is the badge number to update?\n" +
-                "If the number is not being updated at this time, please enter the same badge number in this line.");
-            int changeBadgeID = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Type in the badge number to update door access?");
+            int readBadgeID = Convert.ToInt32(Console.ReadLine());
+            KomodoInsurance badge = _repo.GetDetailsByBadgeID();
 
-
-            Console.WriteLine($"{changeBadgeID} currently has access to following doors" /*get from dictionary*/ 
-                "Please make a selection 1-2: " +
+            Console.WriteLine($"{readBadgeID} currently has access to following doors {badge.Doors}) \n" +
+                "Please make a selection 1-2:\n " +
                 "1. Add a door: \n" +
                 "2. Remove a door: \n");
 
             string input = Console.ReadLine();
-            switch (input.ToLower());
+            switch (input.ToLower())
             {
                 case "1":
                 case "one":
                     RemoveDoorPermissions();
-                break;
+                    break;
                 case "2":
                 case "two":
                     AddDoorPermissions();
-                break;
+                    break;
                 default:
-                Console.WriteLine("Sorry, invalid selection. Try again.");
-                Console.ReadLine();
-                Console.Clear();
-                break;
-            }
-
-            public void RemoveDoorPermission()
-            {
-                Console.WriteLine("Which door would you like to remove?");
+                    Console.WriteLine("Sorry, invalid selection. Try again.");
+                    Console.ReadLine();
+                    Console.Clear();
+                    break;
             }
         }
 
+        public void RemoveDoorPermissions()
+        {
+            Console.WriteLine("Which door would you like to remove?");
+            string removeDoor = Console.ReadLine().ToLower();
+            KomodoInsurance.Doors.Remove(removeDoor);
+            Console.WriteLine($"Door{removeDoor} was removed from.");
+        }
 
-        public void ListAllBadges()
+        public void AddDoorPermissions()
+        {
+            Console.WriteLine("Which door would you like to add?");
+            string addDoor = Console.ReadLine().ToLower();
+            KomodoInsRepo.doors.Add(addDoor);
+            Console.WriteLine($"Door {addDoor} was added.");
+        }
+
+        public void ListAllBadgesPermissions()
         {
             Console.Clear();
             Dictionary<int, List<string>> allDetails = _repo.GetAllDetails();
             foreach (int badgeID in allDetails.Keys)
             {
                 string doors = string.Join(",", allDetails[badgeID]);
-                Console.WriteLine($"Badge ID: {badgeID-10} Access to Doors: {doors}");
+                Console.WriteLine($"Badge ID: {badgeID - 10} Access to Doors: {doors}");
             }
             Console.WriteLine("press any key to continue.");
             Console.ReadKey();
@@ -150,15 +164,12 @@ namespace Komodo_Insurance
 
         public void DictionarySeed()
         {
-            KomodoInsurance exOne = new KomodoInsurance (12345, new List<string> { "A7" });
+            KomodoInsurance exOne = new KomodoInsurance(12345, new List<string> { "A7" });
             KomodoInsurance exTwo = new KomodoInsurance(22345, new List<string> { "A1", "A4", "B1", "B2" });
             KomodoInsurance exThree = new KomodoInsurance(32345, new List<string> { "A4", "A5" });
 
-
             _repo.AddNewPermissions(exOne);
             _repo.AddNewPermissions(exTwo);
-
-
         }
     }
 }

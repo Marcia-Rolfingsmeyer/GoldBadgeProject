@@ -50,7 +50,7 @@ Additionally, [@1150Academy](https://elevenfifty.org/) who brought this together
 
 
 ## Resources
-##### C# Queues 
+#### C# Queues 
 - [CodeMaze - How Queues work with Collections](https://code-maze.com/csharp-queue-stack-hashtable/)
 - [Guru99 - Queues](https://www.guru99.com/c-sharp-queue.html)
 - [Programming with Mosh - Repositories, Directories, DateTypes](https://youtu.be/rtXpYpZdOzM)
@@ -77,7 +77,7 @@ Additionally, [@1150Academy](https://elevenfifty.org/) who brought this together
 - [StackOverFlow - Lists in C#](https://stackoverflow.com/questions/3208574/listint-in-c-sharp)
 - [Walt Design & Development - Retrieve List of Files from File Directory](https://youtu.be/RZeOQ8LZy3Q)
 
-##### ReadMe 
+#### ReadMe 
 - [Bull Dog Job - Why Make a ReadMe](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
 - [Choose License](https://choosealicense.com/)
 - [Mark Down Guide](https://www.markdownguide.org/basic-syntax)

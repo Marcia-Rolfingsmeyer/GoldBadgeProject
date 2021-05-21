@@ -8,52 +8,54 @@ namespace Komodo_Ins_Repo
 {
     public class KomodoInsRepo
     {
-        List<string> doors = new List<string>() { "A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4" };
+        readonly KomodoInsurance newItem = new KomodoInsurance();
 
-        KomodoInsurance newItem = new KomodoInsurance();
+        readonly Dictionary<int, List<string>> _badgeDictionary = new Dictionary<int, List<string>>();
 
-        public static Dictionary<int, KomodoInsurance> _badgeDictionary = new Dictionary<int, KomodoInsurance>();
-
-
-
-        public bool AddNewPermissions(int newBadgeID, KomodoInsurance newDoors)
+        public bool AddNewPermissions(int newBadgeID, List<string> newDoors)
         {
             int startCount = _badgeDictionary.Count;
             _badgeDictionary.Add(newBadgeID, newDoors);
-            if (_badgeDictionary.Count > startCount)
-            {
-                return true;
-            }
-            return false;
+            bool wasAdded = startCount + 1 == _badgeDictionary.Count();
+            return wasAdded;
         }
 
-        public void Update(Dictionary<int, string> dic, int currentBadgeID, int newDoorPermissions)
-        {
-            int val;
-            if (dic.TryGetValue(currentBadgeID, out val))
+
+        public void UpdateExistingBadge (int badgeID, string newDoor)
+        { 
+            foreach (int id in _badgeDictionary.Keys)
+            {
+                if (badgeID==id)
                 {
-                    dic[currentBadgeID] = val + newDoorPermissions;
+                    _badgeDictionary[id].Add(newDoor);  //got help with this - not sure I fully understand why this works
                 }
-            else
-            {
-                dic.Add(key, newDoorPermissions);
             }
         }
 
-        public static Dictionary<int, KomodoInsurance> GetAllKomodoInsurance()
+        public List<string> GetDetailsByBadgeID(int badgeID)
+        {
+            if (_badgeDictionary.TryGetValue(badgeID, out List<string> doors)) //system recommended change
+            {
+                return doors;
+            }
+            return null;
+        }
+
+        public Dictionary<int, List<string>> GetAllDetails()
         {
             return _badgeDictionary;
         }
 
-        public bool DeleteBadgePermisssions(int deleteBadgeID)
+        public void RemoveADoor(int badgeID, string door)
         {
-            int startCount = _badgeDictionary.Count;
-            _badgeDictionary.Remove(deleteBadgeID);
-            if (_badgeDictionary.Count < startCount)
+            foreach(int id in _badgeDictionary.Keys)
             {
-                return true;
+                if(badgeID==id)
+                {
+                    List<string> doors = _badgeDictionary[id];
+                    doors.Remove(door);
+                }
             }
-            return false;
         }
     }
 }

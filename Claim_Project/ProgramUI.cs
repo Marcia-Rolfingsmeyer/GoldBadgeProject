@@ -87,7 +87,6 @@ namespace Claim_Project
             bool keepRunning = true;
             while (keepRunning)
             {
-
                 Console.WriteLine
                 ("Select a menu option: \n" +
                 "1. Remove completed claim. \n" +

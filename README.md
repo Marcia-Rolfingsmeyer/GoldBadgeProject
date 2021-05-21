@@ -12,7 +12,7 @@
 
 ## Gold Badge Project
 3 challenges to utilize learned knowledge for C# for 1150 academy.  GoldBadge is the 1st step for software development.  
-It utilizes methods, classes, constructors, queues, lists, collections, and test methods.  
+It utilizes methods, classes, constructors, queues, lists, collections, dictionaries, repo's, crud, and test methods.  
 
 
 
